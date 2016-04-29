@@ -1,0 +1,46 @@
+;; 配置文件示例
+;  注意 `yaf.environ` 此项目配置, 默认值为"product"
+;  这是Yaf的环境名称, 这指明了Yaf将要在INI配置中读取的节的名字
+;  开发环境请设置为 develop, 生产环境设置为 product
+[common]
+;; 资源配置
+;  Redis
+resources.redis.host = "127.0.0.1"
+resources.redis.port = 6379
+resources.redis.auth = null
+resources.redis.db   = 2
+; 键名的前缀, 由 phpRedis 这个扩展自动维护
+resources.redis.options.prefix = ""
+
+; 御城河
+gwlog.isactive   = 1
+gwlog.redis.host = "127.0.0.1"
+gwlog.redis.port = 6379
+gwlog.redis.db   = 0
+gwlog.app.name = "st"
+gwlog.listname = "hlg_gwlog"
+gwlog.server.ip = "172.16.2.213"
+
+;黑名单 踢用户下线
+gwlog.user.isactive = 1
+gwlog.user.redis.host = "127.0.0.1"
+gwlog.user.redis.port = 6379
+gwlog.user.redis.db   = 0
+gwlog.user.black.queue = 'tech:tb_seller_blacklist:st'
+gwlog.user.outlogin.queue = 'tech:session_relation_st_'
+
+;记录报错到elk
+elk.isactive = 1
+elk.redis.host = "127.0.0.1"
+elk.redis.port = 6379
+elk.redis.db = 0
+
+
+
+[product : common]
+
+
+[develop : common]
+
+
+

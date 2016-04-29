@@ -1,0 +1,33 @@
+;; 支付宝 配置文件示例
+;  注意 `yaf.environ` 此项目配置, 默认值为"product"
+;  这是Yaf的环境名称, 这指明了Yaf将要在INI配置中读取的节的名字
+;  开发环境请设置为 develop, 生产环境设置为 product
+[common]
+; 支付类型, 必填，不能修改
+direct.paymentType    = "1";
+; 是否强制验证支付宝的消息是否真实, 为了安全, 建议开启
+direct.verifyNotify   = 1
+; 访问模式, 根据自己的服务器是否支持ssl, 支持选择https, 不支持请选择http
+direct.transport      = "https"
+; 服务器异步通知页面路径, 需http://格式的完整路径，不能加?id=123这类自定义参数
+direct.notifyUrl      = "http://st.huanleguang.com/callback/alipay/directnotify/"
+; 页面跳转同步通知页面路径
+direct.returnUrl      = "http://st.huanleguang.com/callback/alipay/directreturn/"
+; HTTP形式消息验证地址
+direct.verifyUrlHttp  = "http://notify.alipay.com/trade/notify_query.do?"
+; HTTPS形式消息验证地址
+direct.verifyUrlHttps = "https://mapi.alipay.com/gateway.do?service=notify_verify&"
+; 卖家支付宝帐户, email 格式
+direct.sellerEmail    = "huanleguang@gmail.com"
+; 开发者ID
+direct.partner        = "2088701889359882"
+; 开发者Key (机密数据, 不提交到版本库, 配置时请问 Tiger)
+direct.key            = ""
+; ssl 证书名称
+direct.pemName        = "cacert"
+
+
+[product : common]
+
+
+[develop : common]

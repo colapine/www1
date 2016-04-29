@@ -1,0 +1,20 @@
+;; 邮件SMTP 配置文件示例
+;  注意 `yaf.environ` 此项目配置, 默认值为"product"
+;  这是Yaf的环境名称, 这指明了Yaf将要在INI配置中读取的节的名字
+;  开发环境请设置为 develop, 生产环境设置为 product
+[common]
+report.name = 'smtp.exmail.qq.com'
+report.host = 'smtp.exmail.qq.com'
+report.port = 465
+report.connection_class = 'plain'
+; 邮箱, 部署人员自行修改
+report.connection_config.username = 'bird@huanleguang.com'
+; 密码, 部署人员自行修改
+report.connection_config.password = ''
+report.connection_config.ssl = 'ssl'
+
+
+[product : common]
+
+
+[develop : common]
