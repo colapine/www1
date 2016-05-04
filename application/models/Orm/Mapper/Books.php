@@ -7,10 +7,10 @@ use Zend\Db\Sql\Expression;
 
 /**
  * 数学模型
- * Class WorksModel
+ * Class BooksModel
  * @package Orm\Mapper
  */
-class WorksModel extends mapAbstract
+class BooksModel extends mapAbstract
 {
 
     /**
@@ -28,14 +28,14 @@ class WorksModel extends mapAbstract
     /**
      * 单例, 所有的子类都必需定义此属性
      *
-     * @var WorksModel
+     * @var BooksModel
      */
     protected static $instance = null;
 
     /**
      * 单例接口
      *
-     * @return WorksModel
+     * @return BooksModel
      */
     public static function getInstance()
     {
@@ -49,7 +49,7 @@ class WorksModel extends mapAbstract
      */
     public function getModelClassName()
     {
-        return '\\Orm\\WorksModel';
+        return '\\Orm\\BooksModel';
     }
 
     /**
@@ -81,7 +81,7 @@ class WorksModel extends mapAbstract
      */
     public function getTableNameBase()
     {
-        return 'works';
+        return 'books';
     }
 
     /**
@@ -89,7 +89,7 @@ class WorksModel extends mapAbstract
      *
      * @param int $val tid
      *
-     * @return \Orm\WorksModel|null
+     * @return \Orm\BooksModel|null
      */
     public function find($val)
     {
@@ -100,23 +100,22 @@ class WorksModel extends mapAbstract
     /**
      * 插入数据
      *
-     * @param   \Orm\WorksModel $model
+     * @param   \Orm\BooksModel $model
      * @return int
      */
-    public function insert(\Orm\WorksModel $model)
+    public function insert(\Orm\BooksModel $model)
     {
         $model->setCreatetime(time())->setUpdatetime(time());
         return parent::tgInsert($model->toArray());
     }
 
-
     /**
      * 更新数据
      *
-     * @param   \Orm\WorksModel $model
+     * @param   \Orm\BooksModel $model
      * @return int
      */
-    public function update(\Orm\WorksModel $model)
+    public function update(\Orm\BooksModel $model)
     {
         $model->setUpdatetime(time());
         $where = array($this->getPrimaryKey() => $model->getId());
@@ -126,4 +125,5 @@ class WorksModel extends mapAbstract
 
         return parent::tgUpdate($data, $where);
     }
+
 }
