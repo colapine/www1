@@ -1,20 +1,16 @@
 <?php
 
-use Base\AdminController;
+use Base\ApplicationController;
 
 /**
  * 首页
  */
-class IndexController extends AdminController
+class IndexController extends ApplicationController
 {
 
     public function indexAction()
     {
 
-        echo 'aaaa';
-
-
-        $this->assign('test', 11);
     }
 
     /**

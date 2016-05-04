@@ -46,7 +46,7 @@ class View extends Simple
      *
      * @param string $tpl       模板的路经
      * @param array $tpl_vars   模板变量
-     * @return strinbg
+     * @return string
      */
     public function render($tpl, $tpl_vars = NULL)
     {

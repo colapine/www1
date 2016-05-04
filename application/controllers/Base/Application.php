@@ -243,4 +243,14 @@ class ApplicationController extends Controller_Abstract
             throw new \Exception('need_high_version');
         }
     }
+
+    /**
+     * 获取链接
+     * @param $path
+     * @return string
+     */
+    protected function getUrl($path)
+    {
+        return \Bootstrap::getUrl($path);
+    }
 }

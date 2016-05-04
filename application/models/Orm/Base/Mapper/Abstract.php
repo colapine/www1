@@ -32,6 +32,8 @@ abstract class AbstractModel implements InterfaceModel
      */
     protected $ormCacheTTL = 86400;
 
+
+
     public function __construct()
     {
         $this->dbAdapter = $this->getDbAdapter();
@@ -168,22 +170,6 @@ abstract class AbstractModel implements InterfaceModel
             return null;
         }
 
-        /*御城河日志上报*/
-        try {
-
-            $db = $this->dbAdapter->driver->getConnection()->getConnectionParameters();
-            $logData = array(
-                'sql' => $this->toSqlString($select),
-                'db'  => isset($db['database']) ? $db['database'] : 'trade',
-            );
-            \St\Gwlog::log2remote($logData,'sql');
-
-
-        } catch (\Exception $e) {
-
-        }
-
-
         return $this->map($resultSet->current());
     }
 
@@ -226,21 +212,6 @@ abstract class AbstractModel implements InterfaceModel
 
         foreach ($resultSet as $item) {
             $modelArr[] = $this->map($item);
-        }
-
-        /*御城河日志上报*/
-        try {
-
-            $db = $this->dbAdapter->driver->getConnection()->getConnectionParameters();
-            $logData = array(
-                'sql' => $this->toSqlString($select),
-                'db'  => isset($db['database']) ? $db['database'] : 'trade',
-            );
-            \St\Gwlog::log2remote($logData,'sql');
-
-
-        } catch (\Exception $e) {
-
         }
 
         return $modelArr;

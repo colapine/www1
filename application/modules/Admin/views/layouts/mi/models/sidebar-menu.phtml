@@ -1,0 +1,69 @@
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+
+<?php
+
+$request = $this->getRequest();
+$mName   = $request->getModuleName();
+$cName   = $request->getControllerName();
+$aName   = $request->getActionName();
+$ca      = "$cName/$aName";
+
+$data = [];
+
+$data['管理'] = [
+    'manage/notice' => '公告',
+];
+
+$data['用户'] = [
+    'mser/index' => '用户列表',
+];
+
+$data['内容'] = [
+    'books/index'  => '本子管理',
+    'author/index' => '作者管理',
+    'works/index'  => '作品管理',
+    'couple/index' => 'couple管理',
+    'config/index' => '配置管理',
+];
+
+$data['统计'] = [
+
+];
+
+$data['设置'] = [
+
+];
+
+?>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+        <?php
+        $i = 1;
+        foreach ($data as $module => $list) {
+            ?>
+
+            <li class="dropdown">
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo<?php echo $i ?>">
+                    <i class="fa fa-fw fa-wrench"></i>
+                    <?php echo $module ?>
+                </a>
+
+                <ul id="demo<?php echo $i ?>" class="collapse">
+
+                    <?php
+                    foreach ($list as $url => $name) {
+                        ?>
+                        <li>
+                            <a href="<?php echo \Bootstrap::getUrl('admin/' . $url) ?>"> <?php echo $name ?> </a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </li>
+            <?php
+            $i++;
+        }
+        ?>
+    </ul>
+</div>

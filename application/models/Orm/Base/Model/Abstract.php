@@ -81,7 +81,7 @@ abstract class AbstractModel implements \JsonSerializable
      * 通用设置方法
      *
      * @param array $options    参数. 如果是类, 必需实现了toArray(), 或者实现Traversabl接口的类.
-     * @return Orm\Base\Model\AbstractModel
+     * @return \Orm\Base\Model\AbstractModel
      */
     public function mSet($options)
     {

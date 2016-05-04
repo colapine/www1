@@ -22,7 +22,6 @@ class IndexController extends ApplicationController
      */
     public function indexAction()
     {
-        $this->disableView();
 
 
         /**
@@ -35,8 +34,7 @@ class IndexController extends ApplicationController
 //            return true;
 //        }
 
-        /* 其他情况, 跳转到功能首页 */
-        $this->redirect(\Bootstrap::getUrl('admin/index/index'));
+        $this->assign('adminurl',$this->getUrl('admin/index/index'));
 
         return true;
     }
