@@ -1,0 +1,81 @@
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    本子管理
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="<?php echo \Bootstrap::getUrl('admin/books/index') ?>">本子</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> 新增
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <form role="form" action="<?php echo \Bootstrap::getUrl('admin/books/add') ?>">
+
+                    <div class="form-group">
+                        <label>名称</label>
+                        <input class="form-control" name="title" value=""  />
+                        <p class="help-block">本子名</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>汉化名</label>
+                        <input class="form-control" name="title_ch" value=""  />
+                        <p class="help-block">汉化名</p>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>CP</label>
+                        <select class="form-control" name="couple">
+                            <option value="0">请选择</option>
+                            <option value="837">伏八</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>作者</label>
+                        <select class="form-control" name="author">
+                            <option value="0">请选择</option>
+                            <option value="837">kiri</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>作品</label>
+                        <select class="form-control" name="work">
+                            <option value="0">请选择</option>
+                            <option value="504">K</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="reset" class="btn btn-default">取消</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->

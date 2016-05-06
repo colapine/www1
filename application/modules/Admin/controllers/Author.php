@@ -1,32 +1,33 @@
 <?php
 
 use Base\AdminController;
-use \Zend\Db\Sql\Where;
 
-use Orm\Mapper\BooksModel as MapBooks;
-use Orm\BooksModel as ModBooks;
+use Orm\Mapper\AuthorModel as MapAuthor;
+use Orm\AuthorModel as ModAuthor;
 
 /**
- * 本子管理
+ * 作者管理
  */
-class BooksController extends AdminController
+class AuthorController extends AdminController
 {
 
     public function indexAction()
     {
+
         $request = $this->getRequest();
 
         $page_num = abs(intval($request->get('page_num',1)));
         $page_size = abs(intval($request->get('page_size',35)));
 
-        $mapBooks = MapBooks::getInstance();
-        $total = $mapBooks->count(null);
-        $books = $mapBooks->fetchAll(null ,'id desc',$page_size,($page_num-1)*$page_size);
+        $mapAuthor = MapAuthor::getInstance();
+        $total = $mapAuthor->count(null);
+        $books = $mapAuthor->fetchAll(null ,'id desc',$page_size,($page_num-1)*$page_size);
 
 
         $this->assign('total', $total);
         $this->assign('books',$books);
     }
+
     public function addAction()
     {
 
@@ -47,14 +48,11 @@ class BooksController extends AdminController
         $author = intval($request->get('author'));
 
 
-        $mapBooks = MapBooks::getInstance();
-        $modBooks = new ModBooks();
+        $mapAuthor = MapAuthor::getInstance();
+        $modAuthor = new ModAuthor();
 
-        $modBooks->setLanguage(1)->setTitle($title)->setTitleCh($title_ch)
-            ->setDetails('')->setAuthorId($author)->setWorksId($work)
-            ->setCoupleId($couple)->setCover('');
 
-        $mapBooks->insert($modBooks);
+        $mapAuthor->insert($modAuthor);
 
         $this->redirect($this->getUrl('admin/books/index'));
     }
