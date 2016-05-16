@@ -126,4 +126,20 @@ class WorksModel extends mapAbstract
 
         return parent::tgUpdate($data, $where);
     }
+
+    /**
+     * 获取作品列表
+     */
+    public function getNameList()
+    {
+        $list = $this->fetchAll();
+        $data = [];
+        /* @var $v \Orm\WorksModel*/
+        foreach($list as $v){
+            $data[$v->getId()] = $v->getName();
+        }
+
+        return $data;
+    }
+
 }

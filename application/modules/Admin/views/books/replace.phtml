@@ -1,0 +1,134 @@
+<?php
+$graduation = $this->config['graduation'];
+$language   = $this->config['language'];
+$couples    = $this->config['couples'];
+$authors    = $this->config['authors'];
+$works      = $this->config['workses'];
+?>
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    本子管理
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="<?php echo \Bootstrap::getUrl('admin/books/index') ?>">本子</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> 新增
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <form role="form" action="<?php  if($this->book){ echo\Bootstrap::getUrl('admin/books/update'); }else{ echo \Bootstrap::getUrl('admin/books/add'); }  ?>">
+
+                    <div class="form-group">
+                        <label>名称</label>
+                        <input class="form-control" name="title" value="<?php if($this->book){ echo $this->book['title']; } ?>"  />
+                        <p class="help-block">本子名</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>汉化名</label>
+                        <input class="form-control" name="title_ch" value="<?php if($this->book){ echo $this->book['title_ch']; } ?>"  />
+                        <p class="help-block">汉化名</p>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>CP</label>
+                        <select class="form-control" name="couple">
+                            <option value="0">请选择</option>
+                            <?php
+                            foreach($couples as $id=>$name){
+                            ?>
+                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['couple_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>作者</label>
+                        <select class="form-control" name="author">
+                            <option value="0">请选择</option>
+                            <?php
+                            foreach($authors as $id=>$name){
+                                ?>
+                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['author_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>作品</label>
+                        <select class="form-control" name="work">
+                            <option value="0">请选择</option>
+                            <?php
+                            foreach($works as $id=>$name){
+                                ?>
+                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['works_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>分组</label>
+                        <select class="form-control" name="graduation">
+                            <option value="0">请选择</option>
+                            <?php
+                            foreach($graduation as $id=>$name){
+                                ?>
+                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['graduation']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>语言</label>
+                        <select class="form-control" name="language">
+                            <option value="0">请选择</option>
+                            <?php
+                            foreach($language as $id=>$name){
+                                ?>
+                                <option value="<?php echo $id ?>"<?php  if($this->book && $this->book['language']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <input type="hidden" name="id" value="<?php if($this->book){echo $this->book['id']; }?>" />
+                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="reset" class="btn btn-default">取消</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->

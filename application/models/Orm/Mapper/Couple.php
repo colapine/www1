@@ -7,10 +7,10 @@ use Zend\Db\Sql\Expression;
 
 /**
  * 数学模型
- * Class AuthorModel
+ * Class CoupleModel
  * @package Orm\Mapper
  */
-class AuthorModel extends mapAbstract
+class CoupleModel extends mapAbstract
 {
 
     /**
@@ -28,14 +28,14 @@ class AuthorModel extends mapAbstract
     /**
      * 单例, 所有的子类都必需定义此属性
      *
-     * @var AuthorModel
+     * @var CoupleModel
      */
     protected static $instance = null;
 
     /**
      * 单例接口
      *
-     * @return AuthorModel
+     * @return CoupleModel
      */
     public static function getInstance()
     {
@@ -49,7 +49,7 @@ class AuthorModel extends mapAbstract
      */
     public function getModelClassName()
     {
-        return '\\Orm\\AuthorModel';
+        return '\\Orm\\CoupleModel';
     }
 
     /**
@@ -81,7 +81,7 @@ class AuthorModel extends mapAbstract
      */
     public function getTableNameBase()
     {
-        return 'author';
+        return 'couple';
     }
 
     /**
@@ -89,7 +89,7 @@ class AuthorModel extends mapAbstract
      *
      * @param int $val tid
      *
-     * @return \Orm\AuthorModel|null
+     * @return \Orm\CoupleModel|null
      */
     public function find($val)
     {
@@ -100,10 +100,10 @@ class AuthorModel extends mapAbstract
     /**
      * 插入数据
      *
-     * @param   \Orm\AuthorModel $model
+     * @param   \Orm\CoupleModel $model
      * @return int
      */
-    public function insert(\Orm\AuthorModel $model)
+    public function insert(\Orm\CoupleModel $model)
     {
         $model->setCreatetime(time())->setUpdatetime(time());
         return parent::tgInsert($model->toArray());
@@ -113,10 +113,10 @@ class AuthorModel extends mapAbstract
     /**
      * 更新数据
      *
-     * @param   \Orm\AuthorModel $model
+     * @param   \Orm\CoupleModel $model
      * @return int
      */
-    public function update(\Orm\AuthorModel $model)
+    public function update(\Orm\WorksModel $model)
     {
         $model->setUpdatetime(time());
         $where = array($this->getPrimaryKey() => $model->getId());
@@ -128,17 +128,18 @@ class AuthorModel extends mapAbstract
     }
 
     /**
-     * 获取作者列表
+     * 获取作品列表
      */
     public function getNameList()
     {
         $list = $this->fetchAll();
         $data = [];
-        /* @var $v \Orm\AuthorModel*/
+        /* @var $v \Orm\CoupleModel*/
         foreach($list as $v){
             $data[$v->getId()] = $v->getName();
         }
 
         return $data;
     }
+
 }

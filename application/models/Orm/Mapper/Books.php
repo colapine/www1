@@ -106,6 +106,7 @@ class BooksModel extends mapAbstract
     public function insert(\Orm\BooksModel $model)
     {
         $model->setCreatetime(time())->setUpdatetime(time());
+
         return parent::tgInsert($model->toArray());
     }
 

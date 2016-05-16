@@ -17,7 +17,7 @@ class BooksModel extends AbstractModel
      *
      * @var Int
      */
-    protected $id = 212;
+    protected $id = null;
 
     /**
      * 
