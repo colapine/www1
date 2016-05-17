@@ -127,4 +127,14 @@ class BooksModel extends mapAbstract
         return parent::tgUpdate($data, $where);
     }
 
+    /**
+     * 删除数据
+     */
+    public function delete(\Orm\BooksModel $model)
+    {
+        $where = ['id' => $model->getId()];
+
+        return $this->remove($where);
+    }
+
 }

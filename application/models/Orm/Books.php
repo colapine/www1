@@ -29,6 +29,13 @@ class BooksModel extends AbstractModel
     /**
      * 
      *
+     * @var String
+     */
+    protected $titleZh = null;
+
+    /**
+     * 
+     *
      * @var Int
      */
     protected $coupleId = 0;
@@ -90,13 +97,6 @@ class BooksModel extends AbstractModel
     protected $updatetime = 0;
 
     /**
-     * 
-     *
-     * @var String
-     */
-    protected $titleCh = null;
-
-    /**
      * 获取 
      *
      * @return Int
@@ -139,6 +139,29 @@ class BooksModel extends AbstractModel
     public function setTitle($title)
     {
         $this->title = trim($title);
+        return $this;
+    }
+
+    /**
+     * 获取 
+     *
+     * @return String
+     */
+    public function getTitleZh()
+    {
+        return $this->titleZh;
+    }
+
+    /**
+     * 设置 
+     *
+     * database: varchar(100)
+     * @param String $titleZh 
+     * @return \Orm\BooksModel
+     */
+    public function setTitleZh($titleZh)
+    {
+        $this->titleZh = trim($titleZh);
         return $this;
     }
 
@@ -350,29 +373,6 @@ class BooksModel extends AbstractModel
     }
 
     /**
-     * 获取 
-     *
-     * @return String
-     */
-    public function getTitleCh()
-    {
-        return $this->titleCh;
-    }
-
-    /**
-     * 设置 
-     *
-     * database: varchar(100)
-     * @param String $titleCh 
-     * @return \Orm\BooksModel
-     */
-    public function setTitleCh($titleCh)
-    {
-        $this->titleCh = trim($titleCh);
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function toArray()
@@ -380,6 +380,7 @@ class BooksModel extends AbstractModel
         return array(
             'id'         => $this->id,
             'title'      => $this->title,
+            'title_zh'   => $this->titleZh,
             'couple_id'  => $this->coupleId,
             'works_id'   => $this->worksId,
             'details'    => $this->details,
@@ -389,7 +390,6 @@ class BooksModel extends AbstractModel
             'language'   => $this->language,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
-            'title_ch'   => $this->titleCh,
         );
     }
 

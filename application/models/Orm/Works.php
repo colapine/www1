@@ -24,7 +24,21 @@ class WorksModel extends AbstractModel
      *
      * @var String
      */
-    protected $name = null;
+    protected $title = null;
+
+    /**
+     * 
+     *
+     * @var String
+     */
+    protected $titleZh = null;
+
+    /**
+     * 
+     *
+     * @var String
+     */
+    protected $subtitile = null;
 
     /**
      * 图片
@@ -40,12 +54,6 @@ class WorksModel extends AbstractModel
      */
     protected $language = null;
 
-    /**
-     * 作品类型
-     *
-     * @var String
-     */
-    protected $type = null;
 
     /**
      * 介绍
@@ -96,21 +104,67 @@ class WorksModel extends AbstractModel
      *
      * @return String
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
      * 设置 作品名称
      *
      * database: varchar(45)
-     * @param String $name 作品名称
+     * @param String $title 作品名称
      * @return \Orm\WorksModel
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = trim($name);
+        $this->title = trim($title);
+        return $this;
+    }
+
+    /**
+     * 获取 
+     *
+     * @return String
+     */
+    public function getTitleZh()
+    {
+        return $this->titleZh;
+    }
+
+    /**
+     * 设置 
+     *
+     * database: varchar(45)
+     * @param String $titleZh 
+     * @return \Orm\WorksModel
+     */
+    public function setTitleZh($titleZh)
+    {
+        $this->titleZh = trim($titleZh);
+        return $this;
+    }
+
+    /**
+     * 获取 
+     *
+     * @return String
+     */
+    public function getSubtitile()
+    {
+        return $this->subtitile;
+    }
+
+    /**
+     * 设置 
+     *
+     * database: varchar(45)
+     * @param String $subtitile 
+     * @return \Orm\WorksModel
+     */
+    public function setSubtitile($subtitile)
+    {
+        $this->subtitile = trim($subtitile);
         return $this;
     }
 
@@ -157,29 +211,6 @@ class WorksModel extends AbstractModel
     public function setLanguage($language)
     {
         $this->language = intval($language);
-        return $this;
-    }
-
-    /**
-     * 获取 作品类型
-     *
-     * @return String
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * 设置 作品类型
-     *
-     * database: varchar(45)
-     * @param String $type 作品类型
-     * @return \Orm\WorksModel
-     */
-    public function setType($type)
-    {
-        $this->type = trim($type);
         return $this;
     }
 
@@ -259,10 +290,11 @@ class WorksModel extends AbstractModel
     {
         return array(
             'id'         => $this->id,
-            'name'       => $this->name,
+            'title'      => $this->title,
+            'title_zh'   => $this->titleZh,
+            'subtitile'  => $this->subtitile,
             'pics'       => $this->pics,
             'language'   => $this->language,
-            'type'       => $this->type,
             'details'    => $this->details,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,

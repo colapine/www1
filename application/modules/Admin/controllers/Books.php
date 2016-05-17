@@ -57,7 +57,7 @@ class BooksController extends AdminController
 
         $request    = $this->getRequest();
         $title      = $request->get('title');
-        $title_ch   = $request->get('title_ch');
+        $title_zh   = $request->get('title_zh');
         $couple     = intval($request->get('couple'));
         $work       = intval($request->get('work'));
         $author     = intval($request->get('author'));
@@ -70,7 +70,7 @@ class BooksController extends AdminController
 
         $modBook->setLanguage(1)
             ->setTitle($title)
-            ->setTitleCh($title_ch)
+            ->setTitleZh($title_zh)
             ->setDetails('')
             ->setAuthorId($author)
             ->setWorksId($work)
@@ -84,6 +84,10 @@ class BooksController extends AdminController
         $this->redirect($this->getUrl('admin/books/index'));
     }
 
+    /**
+     * 接口
+     * 更新信息
+     */
     public function updateAction()
     {
         $this->disableView();
@@ -91,7 +95,7 @@ class BooksController extends AdminController
         $request    = $this->getRequest();
         $id         = intval($request->get('id', 0));
         $title      = trim($request->get('title'));
-        $title_ch   = trim($request->get('title_ch'));
+        $title_zh   = trim($request->get('title_zh'));
         $couple     = intval($request->get('couple'));
         $work       = intval($request->get('work'));
         $author     = intval($request->get('author'));
@@ -106,7 +110,7 @@ class BooksController extends AdminController
 
         $modBook->setLanguage(1)
             ->setTitle($title)
-            ->setTitleCh($title_ch)
+            ->setTitleZh($title_zh)
             ->setDetails('')
             ->setAuthorId($author)
             ->setWorksId($work)
@@ -119,5 +123,24 @@ class BooksController extends AdminController
         $this->redirect($this->getUrl('admin/books/index'));
     }
 
+    /**
+     * 接口
+     * 删除
+     */
+    public function deleteAction()
+    {
+        $this->disableView();
+
+        $request    = $this->getRequest();
+        $id         = intval($request->get('id', 0));
+        $mapBooks = MapBooks::getInstance();
+        $modBook  = $mapBooks->find($id);
+        if (!empty($modBook)) {
+            $mapBooks->delete($modBook);
+        }
+
+        $this->redirect($this->getUrl('admin/books/index'));
+
+    }
 
 }

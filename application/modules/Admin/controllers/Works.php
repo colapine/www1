@@ -14,11 +14,29 @@ class WorksController extends AdminController
     public function indexAction()
     {
 
-        echo 'aaaa';
+        $request = $this->getRequest();
 
+        $page_num  = abs(intval($request->get('page_num', 1)));
+        $page_size = abs(intval($request->get('page_size', 35)));
 
-        $this->assign('test', 11);
+        $mapWorks = MapWorks::getInstance();
+        $total    = $mapWorks->count(null);
+        $workses    = $mapWorks->fetchAll(null, 'id desc', $page_size, ($page_num - 1) * $page_size);
+
+        $config = \Works\ConfigModel::getInstance()->getSetting();
+
+        $this->assign('total',$total);
+        $this->assign('workses',$workses);
+        $this->assign('config',$config);
     }
+
+
+    public function replaceAction()
+    {
+
+    }
+
+
 
     public function addAction()
     {
