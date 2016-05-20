@@ -128,6 +128,16 @@ class WorksModel extends mapAbstract
     }
 
     /**
+     * 删除数据
+     */
+    public function delete(\Orm\WorksModel $model)
+    {
+        $where = ['id' => $model->getId()];
+
+        return $this->remove($where);
+    }
+
+    /**
      * 获取作品列表
      */
     public function getNameList()
@@ -136,10 +146,11 @@ class WorksModel extends mapAbstract
         $data = [];
         /* @var $v \Orm\WorksModel*/
         foreach($list as $v){
-            $data[$v->getId()] = $v->getName();
+            $data[$v->getId()] = $v->getTitle();
         }
 
         return $data;
     }
+
 
 }

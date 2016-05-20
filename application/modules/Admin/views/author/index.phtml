@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    本子管理
+                    作者管理
                 </h1>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i>  <a href="<?php echo \Bootstrap::getUrl('admin/books/index') ?>">本子</a>
+                        <i class="fa fa-dashboard"></i>  <a href="<?php echo \Bootstrap::getUrl('admin/author/index') ?>">作者</a>
                     </li>
                     <li class="active">
                         <i class="fa fa-edit"></i> 列表(<?php echo $this->total ?>)
@@ -25,7 +25,7 @@
             <div class="col-xs-12 col-md-12">
                     <div class="widget-body">
                         <div class="table-toolbar">
-                            <a id="editabledatatable_new" href="<?php echo \Bootstrap::getUrl('admin/books/add') ?>" class="btn btn-default">
+                            <a id="editabledatatable_new" href="<?php echo \Bootstrap::getUrl('admin/author/add') ?>" class="btn btn-default">
                                 新增
                             </a>
                         </div>
@@ -58,25 +58,24 @@
                             <tbody>
 
                             <?php
-                            if($this->books){
-                                /* @var $v Orm\BooksModel*/
-                                foreach($this->books as $v){
-                                   $book =  $v->toArray();
+                            if($this->authors){
+                                /* @var $v Orm\AuthorModel*/
+                                foreach($this->authors as $v){
+                                   $author =  $v->toArray();
                             ?>
                                 <tr>
                                     <td>
-                                        <?php echo $book['title'] ?>
-                                        <br />
-                                        <?php echo $book['title_ch'] ?>
+                                        <?php echo $author['name'] ?>
                                     </td>
-                                    <td><?php echo $book['couple_id'] ?></td>
-                                    <td><?php echo $book['author_id'] ?></td>
-                                    <td><?php echo $book['works_id'] ?></td>
-                                    <td><?php echo $book['title'] ?></td>
-                                    <td class="center "><?php echo $book['title'] ?></td>
+                                    <td><?php echo $author['couple_id'] ?></td>
+                                    <td><?php echo $author['author_id'] ?></td>
+                                    <td><?php echo $author['works_id'] ?></td>
+                                    <td><?php echo $author['title'] ?></td>
+                                    <td class="center "><?php echo $author['title'] ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> Delete</a>
+                                        <a href="<?php echo \Bootstrap::getUrl('admin/author/replace/').'/?id='.$author['id'];?>" class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="<?php echo \Bootstrap::getUrl('admin/author/delete/').'/?id='.$author['id'];?>" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i>
+                                            Delete</a>
                                     </td>
                                 </tr>
 

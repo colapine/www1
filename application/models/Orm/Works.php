@@ -38,7 +38,7 @@ class WorksModel extends AbstractModel
      *
      * @var String
      */
-    protected $subtitile = null;
+    protected $subtitle = null;
 
     /**
      * 图片
@@ -150,21 +150,21 @@ class WorksModel extends AbstractModel
      *
      * @return String
      */
-    public function getSubtitile()
+    public function getSubtitle()
     {
-        return $this->subtitile;
+        return $this->subtitle;
     }
 
     /**
      * 设置 
      *
      * database: varchar(45)
-     * @param String $subtitile 
+     * @param String $subtitle
      * @return \Orm\WorksModel
      */
-    public function setSubtitile($subtitile)
+    public function setSubtitle($subtitle)
     {
-        $this->subtitile = trim($subtitile);
+        $this->subtitle = trim($subtitle);
         return $this;
     }
 
@@ -292,7 +292,7 @@ class WorksModel extends AbstractModel
             'id'         => $this->id,
             'title'      => $this->title,
             'title_zh'   => $this->titleZh,
-            'subtitile'  => $this->subtitile,
+            'subtitle'  => $this->subtitle,
             'pics'       => $this->pics,
             'language'   => $this->language,
             'details'    => $this->details,

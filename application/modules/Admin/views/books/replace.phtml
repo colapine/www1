@@ -4,6 +4,7 @@ $language   = $this->config['language'];
 $couples    = $this->config['couples'];
 $authors    = $this->config['authors'];
 $works      = $this->config['workses'];
+$update     = $this->book ? true : false;
 ?>
 <div id="page-wrapper">
 
@@ -17,10 +18,10 @@ $works      = $this->config['workses'];
                 </h1>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i>  <a href="<?php echo \Bootstrap::getUrl('admin/books/index') ?>">本子</a>
+                        <i class="fa fa-dashboard"></i> <a href="<?php echo \Bootstrap::getUrl('admin/books/index') ?>">本子</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-edit"></i> 新增
+                        <i class="fa fa-edit"></i> <?php if ($update) { ?> 编辑 <?php } else { ?> 新增 <?php } ?>
                     </li>
                 </ol>
             </div>
@@ -32,17 +33,27 @@ $works      = $this->config['workses'];
 
             <div class="col-lg-6">
 
-                <form role="form" action="<?php  if($this->book){ echo\Bootstrap::getUrl('admin/books/update'); }else{ echo \Bootstrap::getUrl('admin/books/add'); }  ?>">
+                <form role="form" action="<?php if ($update) {
+                    echo \Bootstrap::getUrl('admin/books/update');
+                } else {
+                    echo \Bootstrap::getUrl('admin/books/add');
+                } ?>">
 
                     <div class="form-group">
                         <label>名称</label>
-                        <input class="form-control" name="title" value="<?php if($this->book){ echo $this->book['title']; } ?>"  />
+                        <input class="form-control" name="title" value="<?php if ($update) {
+                            echo $this->book['title'];
+                        } ?>"/>
+
                         <p class="help-block">本子名</p>
                     </div>
 
                     <div class="form-group">
                         <label>汉化名</label>
-                        <input class="form-control" name="title_ch" value="<?php if($this->book){ echo $this->book['title_ch']; } ?>"  />
+                        <input class="form-control" name="title_zh" value="<?php if ($update) {
+                            echo $this->book['title_zh'];
+                        } ?>"/>
+
                         <p class="help-block">汉化名</p>
                     </div>
 
@@ -52,10 +63,11 @@ $works      = $this->config['workses'];
                         <select class="form-control" name="couple">
                             <option value="0">请选择</option>
                             <?php
-                            foreach($couples as $id=>$name){
-                            ?>
-                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['couple_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
-                            <?php
+                            foreach ($couples as $id => $name) {
+                                ?>
+                                <option
+                                    value="<?php echo $id ?>" <?php if ($update && $this->book['couple_id'] == $id) { ?> selected<?php } ?> ><?php echo $name ?></option>
+                                <?php
                             }
                             ?>
                         </select>
@@ -66,9 +78,10 @@ $works      = $this->config['workses'];
                         <select class="form-control" name="author">
                             <option value="0">请选择</option>
                             <?php
-                            foreach($authors as $id=>$name){
+                            foreach ($authors as $id => $name) {
                                 ?>
-                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['author_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <option
+                                    value="<?php echo $id ?>" <?php if ($update && $this->book['author_id'] == $id) { ?> selected<?php } ?> ><?php echo $name ?></option>
                                 <?php
                             }
                             ?>
@@ -81,9 +94,10 @@ $works      = $this->config['workses'];
                         <select class="form-control" name="work">
                             <option value="0">请选择</option>
                             <?php
-                            foreach($works as $id=>$name){
+                            foreach ($works as $id => $name) {
                                 ?>
-                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['works_id']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <option
+                                    value="<?php echo $id ?>" <?php if ($update && $this->book['works_id'] == $id) { ?> selected<?php } ?> ><?php echo $name ?></option>
                                 <?php
                             }
                             ?>
@@ -95,9 +109,10 @@ $works      = $this->config['workses'];
                         <select class="form-control" name="graduation">
                             <option value="0">请选择</option>
                             <?php
-                            foreach($graduation as $id=>$name){
+                            foreach ($graduation as $id => $name) {
                                 ?>
-                                <option value="<?php echo $id ?>" <?php  if($this->book && $this->book['graduation']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <option
+                                    value="<?php echo $id ?>" <?php if ($update && $this->book['graduation'] == $id) { ?> selected<?php } ?> ><?php echo $name ?></option>
                                 <?php
                             }
                             ?>
@@ -109,15 +124,18 @@ $works      = $this->config['workses'];
                         <select class="form-control" name="language">
                             <option value="0">请选择</option>
                             <?php
-                            foreach($language as $id=>$name){
+                            foreach ($language as $id => $name) {
                                 ?>
-                                <option value="<?php echo $id ?>"<?php  if($this->book && $this->book['language']==$id){?> selected<?php }?> ><?php echo $name ?></option>
+                                <option
+                                    value="<?php echo $id ?>"<?php if ($update && $this->book['language'] == $id) { ?> selected<?php } ?> ><?php echo $name ?></option>
                                 <?php
                             }
                             ?>
                         </select>
                     </div>
-                    <input type="hidden" name="id" value="<?php if($this->book){echo $this->book['id']; }?>" />
+                    <input type="hidden" name="id" value="<?php if ($update) {
+                        echo $this->book['id'];
+                    } ?>"/>
                     <button type="submit" class="btn btn-default">提交</button>
                     <button type="reset" class="btn btn-default">取消</button>
 
