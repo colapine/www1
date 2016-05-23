@@ -116,7 +116,7 @@ class CoupleModel extends mapAbstract
      * @param   \Orm\CoupleModel $model
      * @return int
      */
-    public function update(\Orm\WorksModel $model)
+    public function update(\Orm\CoupleModel $model)
     {
         $model->setUpdatetime(time());
         $where = array($this->getPrimaryKey() => $model->getId());
@@ -141,5 +141,16 @@ class CoupleModel extends mapAbstract
 
         return $data;
     }
+
+    /**
+     * 删除数据
+     */
+    public function delete(\Orm\CoupleModel $model)
+    {
+        $where = ['id' => $model->getId()];
+
+        return $this->remove($where);
+    }
+
 
 }

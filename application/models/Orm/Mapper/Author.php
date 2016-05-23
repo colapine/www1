@@ -126,6 +126,15 @@ class AuthorModel extends mapAbstract
 
         return parent::tgUpdate($data, $where);
     }
+    /**
+     * 删除数据
+     */
+    public function delete(\Orm\AuthorModel $model)
+    {
+        $where = ['id' => $model->getId()];
+
+        return $this->remove($where);
+    }
 
     /**
      * 获取作者列表
