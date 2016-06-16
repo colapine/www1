@@ -10,7 +10,7 @@ class IndexController extends ApplicationController
 
     public function indexAction()
     {
-
+        echo 'xxx';exit;
     }
 
     /**

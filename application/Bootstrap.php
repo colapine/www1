@@ -403,46 +403,21 @@ class Bootstrap extends Bootstrap_Abstract
     }
 
     /**
-     * 重置shop_id
+     * 构造文件地址路径
      */
-    public static function setShopId($shopId)
+    public static function getDataDir($dir = '')
     {
-//        $shop = shopMapper::getInstance()->find($shopId);
-//        if ($shop instanceof Orm\Core\ShopModel) {
-//            self::$shopId    = $shopId;
-//            self::$shopModel = $shop;
-//            self::$shopNick  = $shop->getShopNick();
-//        }
-//        else {
-//            throw new \Exception('shop');
-//        }
+        $data = self::getConfig()->get('data');
+        $url = $data['directory'];
+
+        return empty($dir) ? $url : $url.'/'.$dir;
+
     }
 
-    /**
-     * 获取 当前登录卖家的shopId
-     *
-     * 数据来源于Session.
-     * 对应 core_shop.shop_id 的数据
-     *
-     * @return int
-     */
-    public static function getShopId()
-    {
-        return self::$userId;
-    }
 
-    /**
-     * 获取 当前登录卖家的shop类
-     *
-     * 数据来源于Session.
-     * 对应 user 的数据
-     *
-     * @return null|\Orm\UserModel
-     */
-    public static function getShopModel()
-    {
-        return self::$userModel;
-    }
+
+
+
 
     /**
      * 获取当前登录卖家的userNick

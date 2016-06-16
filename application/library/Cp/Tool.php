@@ -161,7 +161,7 @@ class Tool
     /**
      * 字符串处理
      *
-     * @param type $str
+     * @param string $str
      * @return string
      */
     static public function filter($str)
@@ -281,4 +281,7 @@ class Tool
 
         return intval($time_info['sec'] * 1000 + $time_info['usec'] / 1000);
     }
+
+
+
 }

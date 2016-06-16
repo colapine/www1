@@ -1,0 +1,172 @@
+<?php
+$f = $this->f;
+$bgs = [
+    'k'  => 'bg-success',
+    'q'  => 'bg-warning',
+    't'  => 'bg-info',
+    'ko' => 'bg-danger'
+];
+
+?>
+
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>ever17 四条线</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+
+                        <tr>
+                            <th class="<?php echo $bgs['k'] ?>">
+                                 <?php
+                                if($f=='k'){echo '空(当前)';}
+                                 else{
+                                     ?>
+                                     <a href="/admin/game/index/?f=k">空</a>
+                                <?php
+                                 }
+                                ?>
+                            </th>
+                            <th class="<?php echo $bgs['q'] ?>">
+                                <?php
+                                if($f=='q'){echo '鸠(当前)';}
+                                else{
+                                    ?>
+                                    <a href="/admin/game/index/?f=q">鸠</a>
+                                    <?php
+                                }
+                                ?>
+                            </th>
+                            <th class="<?php echo $bgs['t'] ?>">
+                                <?php
+                                if($f=='t'){echo '优(当前)';}
+                                else{
+                                    ?>
+                                    <a href="/admin/game/index/?f=t">优</a>
+                                    <?php
+                                }
+                                ?>
+                            </th>
+                            <th class="<?php echo $bgs['ko'] ?>">
+                                <?php
+                                if($f=='ko'){echo '可可(当前)';}
+                                else{
+                                    ?>
+                                    <a href="/admin/game/index/?f=ko">可可</a>
+                                    <?php
+                                }
+                                ?>
+                             </th>
+                        </tr>
+                        <tr>
+                            <th>场景</th>
+                            <th colspan="3">选项</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        <?php
+                        foreach ($this->list as $l) {
+                            $option = $this->options[$l];
+                            $girl   = isset($this->girls[$l]) ? $this->girls[$l] : [];
+                            ?>
+                            <tr>
+                                <td><?php echo $option['d'] ?> </td>
+                                <td>
+                                    <?php
+                                    $a = 0;
+                                    foreach ($this->glist as $g) {
+                                        if (isset($girl[$g]) && $girl[$g] == 'a') {
+                                            if($g==$f){$a=4;}
+                                            $a ++;
+                                            ?>
+                                            <div class="<?php echo $bgs[$g]; ?>" style="width:100%">
+                                                <?php echo $option['a']; ?>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                    if($a<4){
+                                        ?>
+                                    <a href="/admin/game/put/?f=<?php echo $f ?>&r=<?php echo $l.'|a'?>">
+                                        <?php echo $option['a'] ; ?>
+                                    </a>
+                                    <?php
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $b = 0;
+                                    foreach ($this->glist as $g) {
+                                        if (isset($girl[$g]) && $girl[$g] == 'b') {
+                                            if($g==$f){$b=4;}
+                                            $b ++;
+                                            ?>
+                                            <div class="<?php echo $bgs[$g]; ?>" style="width:100%">
+                                                <?php echo $option['b']; ?>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                    if($b<4){
+                                        ?>
+                                        <a href="/admin/game/put/?f=<?php echo $f ?>&r=<?php echo $l.'|b'?>">
+                                            <?php echo $option['b'] ; ?>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $c = 0;
+                                    foreach ($this->glist as $g) {
+                                        if (isset($girl[$g]) && $girl[$g] == 'c') {
+                                            if($g==$f){$c=4;}
+                                            $c ++;
+                                            ?>
+                                            <div class="<?php echo $bgs[$g]; ?>" style="width:100%">
+                                                <?php echo $option['c']; ?>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                    if($c<4){
+                                        ?>
+                                        <a href="/admin/game/put/?f=<?php echo $f ?>&r=<?php echo $l.'|c'?>">
+                                            <?php echo $option['c'] ; ?>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+
+                            </tr>
+                        <?php
+
+
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->

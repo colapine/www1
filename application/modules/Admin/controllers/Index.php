@@ -10,20 +10,16 @@ class IndexController extends AdminController
 
     public function indexAction()
     {
-
-        echo 'aaaa';
-
-
         $this->assign('test', 11);
     }
 
+
     /**
-     * 输出服务器 PHP info
+     * 游戏界面
      */
-    public function phpinfoAction()
+    public function gameAction()
     {
-        $this->disableView();
-        phpinfo();
+
     }
 
 }

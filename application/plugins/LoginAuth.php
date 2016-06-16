@@ -51,6 +51,7 @@ class LoginAuthPlugin extends Plugin_Abstract
 
         return true;
 
+
         $moduleName = $request->getModuleName();
         $conName    = $request->getControllerName();
 

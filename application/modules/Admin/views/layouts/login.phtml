@@ -1,0 +1,54 @@
+<?php
+$baseUrlCdn = \Bootstrap::getCdn() . '/a/';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>colapine</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<?php echo $baseUrlCdn; ?>css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="<?php echo $baseUrlCdn; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $baseUrlCdn; ?>css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $baseUrlCdn; ?>css/templatemo_style.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="<?php echo $baseUrlCdn; ?>html5shiv.js"></script>
+    <script src="<?php echo $baseUrlCdn; ?>respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="templatemo-bg-gray">
+
+<?php echo $this->yield; ?>
+
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+
+
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="<?php echo $baseUrlCdn; ?>js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo $baseUrlCdn; ?>js/bootstrap.min.js"></script>
+
+<!--统计等底部信息-->
+<?php echo $this->renderLayoutTpl('mi/models/pager.phtml'); ?>
+
+</body>
+</html>

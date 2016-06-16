@@ -6,11 +6,11 @@ use Orm\Mapper\AbstractModel as mapAbstract;
 use Zend\Db\Sql\Expression;
 
 /**
- * 数学模型
- * Class ConfigModel
+
+ * Class UsersModel
  * @package Orm\Mapper
  */
-class ConfigModel extends mapAbstract
+class UsersModel extends mapAbstract
 {
 
     /**
@@ -28,14 +28,14 @@ class ConfigModel extends mapAbstract
     /**
      * 单例, 所有的子类都必需定义此属性
      *
-     * @var ConfigModel
+     * @var UsersModel
      */
     protected static $instance = null;
 
     /**
      * 单例接口
      *
-     * @return ConfigModel
+     * @return UsersModel
      */
     public static function getInstance()
     {
@@ -49,7 +49,7 @@ class ConfigModel extends mapAbstract
      */
     public function getModelClassName()
     {
-        return '\\Orm\\ConfigModel';
+        return '\\Orm\\UsersModel';
     }
 
     /**
@@ -81,7 +81,7 @@ class ConfigModel extends mapAbstract
      */
     public function getTableNameBase()
     {
-        return 'config';
+        return 'users';
     }
 
     /**
@@ -89,7 +89,7 @@ class ConfigModel extends mapAbstract
      *
      * @param int $val tid
      *
-     * @return \Orm\ConfigModel|null
+     * @return \Orm\UsersModel|null
      */
     public function find($val)
     {
@@ -100,10 +100,10 @@ class ConfigModel extends mapAbstract
     /**
      * 插入数据
      *
-     * @param   \Orm\ConfigModel $model
+     * @param   \Orm\UsersModel $model
      * @return int
      */
-    public function insert(\Orm\ConfigModel $model)
+    public function insert(\Orm\UsersModel $model)
     {
         $model->setCreatetime(time())->setUpdatetime(time());
         return parent::tgInsert($model->toArray());
@@ -113,10 +113,10 @@ class ConfigModel extends mapAbstract
     /**
      * 更新数据
      *
-     * @param   \Orm\ConfigModel $model
+     * @param   \Orm\UsersModel $model
      * @return int
      */
-    public function update(\Orm\ConfigModel $model)
+    public function update(\Orm\UsersModel $model)
     {
         $model->setUpdatetime(time());
         $where = array($this->getPrimaryKey() => $model->getId());
@@ -128,28 +128,24 @@ class ConfigModel extends mapAbstract
     }
 
     /**
-     * 获取所有链接
-     */
-    public function getList()
-    {
-        $result = $this->fetchAll();
-        $data = [];
-        /* @var $v \Orm\ConfigModel*/
-        foreach($result as $v){
-            $data[$v->getTypename()] = json_decode($v->getJson(),true);
-        }
-
-        return $data;
-    }
-
-    /**
      * 删除数据
      */
-    public function delete(\Orm\ConfigModel $model)
+    public function delete(\Orm\UsersModel $model)
     {
         $where = ['id' => $model->getId()];
 
         return $this->remove($where);
     }
+
+   /**
+    *
+    */
+    public function findByEmail($email)
+    {
+        $where = ['email'=>trim($email)];
+
+        return $this->fetchOne($where);
+    }
+
 
 }
